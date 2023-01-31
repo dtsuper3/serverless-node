@@ -15,7 +15,7 @@
 // app.get("/hello", (req, res, next) => {
 
 //   let options = {
-//     maxAge: 1000 * 60 * 15, // would expire after 15 minutes
+//     maxAge: 1000 * 60 * 60 * 24 * 30, // would expire after 15 minutes
 //     httpOnly: true, // The cookie only accessible by the web server    
 //     secure: true,
 //     sameSite: "lax",
@@ -32,7 +32,7 @@
 // app.get("/hello1", (req, res, next) => {
 
 //   let options = {
-//     maxAge: 1000 * 60 * 15, // would expire after 15 minutes
+//     maxAge: 5 * 1000 * 60 * 15, // would expire after 15 minutes
 //     httpOnly: true, // The cookie only accessible by the web server    
 //     secure: true,
 //     sameSite: "lax",
@@ -60,14 +60,10 @@ const handler = (event, context, callback) => {
     body: JSON.stringify({
       message: 'Go Serverless v1.0! Your function executed successfully!',
     }),
-    "multiValueHeaders": {
-      "X-Test-Header": ["baking experiment"],
-      "Set-Cookie": [
-        "Token1=1234; Max-Age=900; Domain=.ideepakthapa.com; Path=/; Expires=Fri, 27 Jan 2023 19:33:08 GMT; HttpOnly; Secure; SameSite=Lax",
-        "Token2=1234; Max-Age=900; Domain=.ideepakthapa.com; Path=/; Expires=Fri, 27 Jan 2023 19:33:08 GMT; HttpOnly; Secure; SameSite=Lax",
-      ],
-      "Content-Type": ["text/plain"]
-    }
+    "cookies": [
+      "Token1=1234; Max-Age=2592000; Domain=.ideepakthapa.com; Path=/; Expires=Thu, 02 Mar 2023 19:51:50 GMT; HttpOnly; Secure; SameSite=Lax",
+      "Token2=1234; Max-Age=2592000; Domain=.ideepakthapa.com; Path=/; Expires=Thu, 02 Mar 2023 19:51:50 GMT; HttpOnly; Secure; SameSite=Lax"
+    ],
   };
 
   callback(null, response);
